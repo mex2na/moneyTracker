@@ -4,11 +4,16 @@ import { AppService } from './app.service';
 import { TaskModule } from './task/task.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { ConfigModule } from '@nestjs/config';
 
 import "dotenv/config"
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
+  imports: [  ConfigModule.forRoot({
+    isGlobal: true, // Les variables seront accessibles globalement
+  }),
+  
+  TypeOrmModule.forRoot({
     type: "postgres",
     host: process.env.DB_HOST,
     port: +process.env.DB_PORT,
