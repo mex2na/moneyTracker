@@ -1,10 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller({
-  path: "user"
-  //même chose que path tsotra ihany 
-})
+@Controller()
 export class AppController {
   constructor(private readonly appService: AppService) { }
 
