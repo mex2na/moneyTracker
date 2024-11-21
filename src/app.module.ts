@@ -9,10 +9,10 @@ import { ConfigModule } from '@nestjs/config';
 import "dotenv/config"
 
 @Module({
-  imports: [  ConfigModule.forRoot({
+  imports: [ConfigModule.forRoot({
     isGlobal: true, // Les variables seront accessibles globalement
   }),
-  
+
   TypeOrmModule.forRoot({
     type: "postgres",
     host: process.env.DB_HOST,
