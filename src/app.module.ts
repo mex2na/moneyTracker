@@ -5,6 +5,7 @@ import { TaskModule } from './task/task.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
+import { LoginModule } from './login/login.module';
 
 import "dotenv/config"
 
@@ -22,7 +23,7 @@ import "dotenv/config"
     database: process.env.DB_NAME,
     autoLoadEntities: true,
     synchronize: true
-  }), TaskModule, UserModule],
+  }), TaskModule, UserModule, LoginModule],
   controllers: [AppController],
   providers: [AppService],
 })
