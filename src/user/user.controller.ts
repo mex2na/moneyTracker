@@ -8,7 +8,7 @@ import * as bcrypt from 'bcrypt';
 
 @Controller('/users')
 // @UseGuards(JwtAuthGuard)
-export class UsersController {
+export class UserController {
   constructor(
     private readonly usersService: UsersService,
   ) { }

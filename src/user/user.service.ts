@@ -9,7 +9,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User) // Injection de dépendance de l'entité User
     private userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   // Méthode pour récupérer tous les utilisateurs
   findAll(): Promise<User[]> {
@@ -20,7 +20,7 @@ export class UsersService {
   findOne(id: number): Promise<User | null> {
     return this.userRepository.findOne({ where: { id } });
   }  // Méthode pour créer un utilisateur
-  
+
   findByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({ where: { email } });
   }
@@ -36,7 +36,7 @@ export class UsersService {
   }
 
   // Méthode pour supprimer un utilisateur
- async remove(id: number): Promise<void> {
-    return await this.userRepository.delete(id).then(() => {});
+  async remove(id: number): Promise<void> {
+    return await this.userRepository.delete(id).then(() => { });
   }
 }
