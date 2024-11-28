@@ -4,7 +4,6 @@ import { LoginController } from './login.controller';
 import { UsersModule } from '../user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
 @Module({
   imports: [
     UsersModule,
