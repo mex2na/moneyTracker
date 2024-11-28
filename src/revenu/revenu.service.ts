@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Revenu } from './entities/revenu.entity';
-import { User } from 'src/users/entities/user.entity';
+import { User } from '../user/entities/user.entity';
 import { CreateRevenuDto } from './dto/create-revenu.dto';
 
 @Injectable()

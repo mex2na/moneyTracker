@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module'; 
-import { User } from './users/entities/user.entity';
+import { UsersModule } from '../src/user/user.module'; 
+import { User } from '../src/user/entities/user.entity';
 import { LoginModule } from './login/login.module';
 import { JwtModule } from '@nestjs/jwt';
 import { RevenuModule } from './revenu/revenu.module';
 import { Revenu } from './revenu/entities/revenu.entity';
-import { ExpenseModule } from './expense/expense.module';
-import { AccountModule } from './account/account.module';
+// import { ExpenseModule } from './expense/expense.module';
+// import { AccountModule } from './account/account.module';
 
 @Module({
   imports: [
@@ -37,8 +37,8 @@ import { AccountModule } from './account/account.module';
     UsersModule,
     LoginModule,
     RevenuModule,
-    ExpenseModule,
-    AccountModule,
+    // ExpenseModule,
+    // AccountModule,
   ],
   controllers: [],
   providers: [],
