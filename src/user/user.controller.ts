@@ -23,7 +23,8 @@ export class UsersController {
       email: createUserDto.email,
       password: hashedPassword,
       id: 0,
-      revenus: []
+      revenus: [],
+      depenses: []
     };
     try {
       const response = await this.usersService.create(user);

@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Revenu } from 'src/revenu/entities/revenu.entity';
+import { Depense } from 'src/depense/entities/depense.entity';
 
 @Entity()
 export class User {
@@ -17,4 +18,7 @@ export class User {
 
   @OneToMany(() => Revenu, (revenu) => revenu.user)
   revenus: Revenu[];
+
+  @OneToMany(() => Depense, (depense) => depense.user)
+  depenses: Depense[];
 }

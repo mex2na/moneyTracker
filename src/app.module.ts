@@ -9,6 +9,8 @@ import { RevenuModule } from './revenu/revenu.module';
 import { Revenu } from './revenu/entities/revenu.entity';
 // import { ExpenseModule } from './expense/expense.module';
 // import { AccountModule } from './account/account.module';
+import { DepenseModule } from './depense/depense.module';
+import { Depense } from './depense/entities/depense.entity';
 
 @Module({
   imports: [
@@ -30,13 +32,14 @@ import { Revenu } from './revenu/entities/revenu.entity';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [User, Revenu],
+      entities: [User, Revenu, Depense],
       synchronize: true,
     }),
 
     UsersModule,
     LoginModule,
     RevenuModule,
+    DepenseModule,
     // ExpenseModule,
     // AccountModule,
   ],
