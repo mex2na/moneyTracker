@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from '../src/user/user.module';
-import { User } from '../src/user/entities/user.entity';
+import { UsersModule } from './user/user.module';
+import { User } from './user/entities/user.entity';
 import { LoginModule } from './login/login.module';
 import { JwtModule } from '@nestjs/jwt';
 import { RevenuModule } from './revenu/revenu.module';

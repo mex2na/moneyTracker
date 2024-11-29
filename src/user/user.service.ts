@@ -8,16 +8,12 @@ import { Revenu } from 'src/revenu/entities/revenu.entity';
 export class UsersService {
   [x: string]: any;
   constructor(
-    @InjectRepository(User) 
+    @InjectRepository(User)
     private userRepository: Repository<User>,
-<<<<<<< HEAD
-  ) { }
-=======
 
     @InjectRepository(Revenu)
     private revenuRepository: Repository<Revenu>,
-  ) {}
->>>>>>> 386373e012dfecb11fe608a011d9726773248c6b
+  ) { }
 
   findAll(): Promise<User[]> {
     return this.userRepository.find();
@@ -30,27 +26,22 @@ export class UsersService {
     });
     if (!revenu) {
       console.error('Revenu non trouvé pour l\'id :', revenuId);
-      return null; 
+      return null;
     }
-    const revenuUserId = Number(revenu.user.id);  
-    const paramUserId = Number(userId);  
+    const revenuUserId = Number(revenu.user.id);
+    const paramUserId = Number(userId);
     if (revenuUserId !== paramUserId) {
-      return null;  
+      return null;
     }
-    return revenu; 
+    return revenu;
   }
-  
-  
-  
+
+
+
   findOne(id: number): Promise<User | null> {
     return this.userRepository.findOne({ where: { id } });
-<<<<<<< HEAD
-  }  // Méthode pour créer un utilisateur
+  }
 
-=======
-  }  
-  
->>>>>>> 386373e012dfecb11fe608a011d9726773248c6b
   findByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({ where: { email } });
   }
@@ -64,13 +55,7 @@ export class UsersService {
     return this.userRepository.findOne({ where: { id } });
   }
 
-<<<<<<< HEAD
-  // Méthode pour supprimer un utilisateur
   async remove(id: number): Promise<void> {
     return await this.userRepository.delete(id).then(() => { });
-=======
- async remove(id: number): Promise<void> {
-    return await this.userRepository.delete(id).then(() => {});
->>>>>>> 386373e012dfecb11fe608a011d9726773248c6b
   }
 }

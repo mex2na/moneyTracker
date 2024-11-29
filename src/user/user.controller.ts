@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Controller, Get, Post, Body, Patch, Param, Delete, UnauthorizedException, UseGuards } from '@nestjs/common';
-=======
 import { Controller, Get, Post, Body, Patch, Param, Delete, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
->>>>>>> 386373e012dfecb11fe608a011d9726773248c6b
 import { UsersService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -12,20 +8,15 @@ import * as bcrypt from 'bcrypt';
 import { JwtAuthGuard } from 'src/jwt-auth.guard';
 
 @Controller('/users')
-<<<<<<< HEAD
-// @UseGuards(JwtAuthGuard)
-export class UserController {
-=======
 @UseGuards(JwtAuthGuard)
 export class UsersController {
->>>>>>> 386373e012dfecb11fe608a011d9726773248c6b
   constructor(
     private readonly usersService: UsersService,
   ) { }
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto, @Res() res: Response): Promise<void> {
-    const saltRounds = 10;   
+    const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(createUserDto.password, saltRounds);
     const user: User = {
       name: createUserDto.name,
@@ -50,8 +41,8 @@ export class UsersController {
 
   @Get(':userId/revenu/:revenuId')
   async getUserIdByRevenuId(
-    @Param('userId') userId: number,  
-    @Param('revenuId') revenuId: number,  
+    @Param('userId') userId: number,
+    @Param('revenuId') revenuId: number,
     @Res() res: Response,
   ): Promise<void> {
     try {
