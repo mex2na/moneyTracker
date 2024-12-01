@@ -41,19 +41,49 @@ export class DepenseService {
 
   }
 
-  findAll() {
-    return `This action returns all depense`;
+
+  async getDepenseByUserId(userId: number): Promise<Depense[]> {
+
+
+    const depenses = await this.depenseRepository.find({
+      where: {
+        user: {
+          id: userId
+        }
+      },
+      relations: ["user"]
+    })
+
+    if (!depenses || depenses.length === 0) {
+      throw new Error("no depenses found")
+    }
+
+    return depenses;
+
+
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} depense`;
+  async findOne(id: number): Promise<Depense> {
+
+    let depense = await this.depenseRepository.findOne({
+      where: {
+        idDepense: id
+      }
+    })
+
+    if (!depense) {
+      throw new Error("Depense not found")
+    }
+
+    return depense;
+
   }
 
-  update(id: number, updateDepenseDto: UpdateDepenseDto) {
-    return `This action updates a #${id} depense`;
+  async update(id: number, depense: Partial<Depense>): Promise<Depense> {
+    await this.depenseRepository.update(id, depense);
+    return this.findOne(id);
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} depense`;
+  async remove(id: number): Promise<void> {
+    await this.depenseRepository.delete(id);
   }
 }

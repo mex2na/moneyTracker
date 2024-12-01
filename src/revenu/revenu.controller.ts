@@ -6,12 +6,12 @@ import { UpdateRevenuDto } from './dto/update-revenu.dto';
 import { JwtAuthGuard } from 'src/jwt-auth.guard';
 
 @Controller('revenu')
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 export class RevenuController {
-  constructor(private readonly revenuService: RevenuService) {}
+  constructor(private readonly revenuService: RevenuService) { }
 
   @Post()
- async create(@Body() createRevenuDto: CreateRevenuDto, @Res() res: Response) {
+  async create(@Body() createRevenuDto: CreateRevenuDto, @Res() res: Response) {
     try {
       const response = await this.revenuService.create(createRevenuDto);
       console.log(response);
@@ -42,7 +42,7 @@ export class RevenuController {
       });
     }
   }
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.revenuService.findOne(+id);

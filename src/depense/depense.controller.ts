@@ -35,9 +35,22 @@ export class DepenseController {
     return this.depenseService.create(createDepenseDto);
   }
 
-  @Get()
-  findAll() {
-    return this.depenseService.findAll();
+  @Get("user/:userId")
+  async getDepenseByUserId(@Param("userId") userId: number, @Res() res: Response) {
+    try {
+      const depenses = await this.depenseService.getDepenseByUserId(userId)
+
+      res.status(201).json({
+        status: true,
+        data: depenses
+      })
+    } catch (err) {
+
+      res.status(500).json({
+        status: false,
+        data: err
+      })
+    }
   }
 
   @Get(':id')
