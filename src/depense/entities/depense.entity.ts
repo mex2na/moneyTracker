@@ -1,3 +1,4 @@
+import { Compte } from "src/compte/entities/compte.entity";
 import { User } from "src/user/entities/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -16,9 +17,12 @@ export class Depense {
     @Column()
     date: Date;
 
-    @ManyToOne(() => User, user => user.depenses)
-    @JoinColumn({ name: "userId" })
-    user: User;
+
+
+    @ManyToOne(() => Compte, compte => compte.depenses)
+    @JoinColumn({ name: "compteId" })
+    compte: Compte;
+
 
 
 }

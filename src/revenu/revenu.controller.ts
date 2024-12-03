@@ -29,18 +29,18 @@ export class RevenuController {
 
   @Get('user/:userId')
   async getRevenuByUserId(@Param('userId') userId: number, @Res() res: Response) {
-    try {
-      const response = await this.revenuService.getRevenuByUserId(userId);
-      res.status(200).json({
-        status: true,
-        data: response
-      });
-    } catch (error) {
-      res.status(500).json({
-        status: false,
-        data: error,
-      });
-    }
+    // try {
+    //   const response = await this.revenuService.getRevenuByUserId(userId);
+    //   res.status(200).json({
+    //     status: true,
+    //     data: response
+    //   });
+    // } catch (error) {
+    //   res.status(500).json({
+    //     status: false,
+    //     data: error,
+    //   });
+    // }
   }
 
   @Get(':id')

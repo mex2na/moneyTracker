@@ -15,5 +15,5 @@ export class CreateRevenuDto {
 
   @IsInt()
   @IsNotEmpty()
-  userID: number;
+  compteId: number;
 }

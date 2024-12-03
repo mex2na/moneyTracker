@@ -20,20 +20,20 @@ export class UsersService {
   }
 
   async getUserIdByRevenuId(userId: number, revenuId: number): Promise<any> {
-    const revenu = await this.revenuRepository.findOne({
-      where: { idRevenu: revenuId },
-      relations: ['user'],  // Charge la relation avec l'utilisateur
-    });
-    if (!revenu) {
-      console.error('Revenu non trouvé pour l\'id :', revenuId);
-      return null;
-    }
-    const revenuUserId = Number(revenu.user.id);
-    const paramUserId = Number(userId);
-    if (revenuUserId !== paramUserId) {
-      return null;
-    }
-    return revenu;
+    // const revenu = await this.revenuRepository.findOne({
+    //   where: { idRevenu: revenuId },
+    //   relations: ['user'],  // Charge la relation avec l'utilisateur
+    // });
+    // if (!revenu) {
+    //   console.error('Revenu non trouvé pour l\'id :', revenuId);
+    //   return null;
+    // }
+    // const revenuUserId = Number(revenu.user.id);
+    // const paramUserId = Number(userId);
+    // if (revenuUserId !== paramUserId) {
+    //   return null;
+    // }
+    // return revenu;
   }
 
 

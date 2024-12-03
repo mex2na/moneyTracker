@@ -18,5 +18,8 @@ export class CreateDepenseDto {
     @IsNotEmpty()
     userId: number;
 
+    @IsInt()
+    @IsNotEmpty()
+    compteId: number;
 
 }

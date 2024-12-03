@@ -6,7 +6,7 @@ import { JwtAuthGuard } from 'src/jwt-auth.guard';
 import { Response } from 'express';
 
 @Controller('depense')
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 export class DepenseController {
   constructor(private readonly depenseService: DepenseService) { }
 
@@ -32,25 +32,25 @@ export class DepenseController {
 
     }
 
-    return this.depenseService.create(createDepenseDto);
+    // return this.depenseService.create(createDepenseDto);
   }
 
   @Get("user/:userId")
   async getDepenseByUserId(@Param("userId") userId: number, @Res() res: Response) {
-    try {
-      const depenses = await this.depenseService.getDepenseByUserId(userId)
+    // try {
+    //   // const depenses = await this.depenseService.getDepenseByUserId(userId)
 
-      res.status(201).json({
-        status: true,
-        data: depenses
-      })
-    } catch (err) {
+    //   res.status(201).json({
+    //     status: true,
+    //     data: depenses
+    //   })
+    // } catch (err) {
 
-      res.status(500).json({
-        status: false,
-        data: err
-      })
-    }
+    //   res.status(500).json({
+    //     status: false,
+    //     data: err
+    //   })
+    // }
   }
 
   @Get(':id')

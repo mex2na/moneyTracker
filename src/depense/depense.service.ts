@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateDepenseDto } from './dto/create-depense.dto';
 import { UpdateDepenseDto } from './dto/update-depense.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,6 +6,8 @@ import { Depense } from './entities/depense.entity';
 import { Repository } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { timeStamp } from 'console';
+import { Compte } from 'src/compte/entities/compte.entity';
+import { CompteService } from 'src/compte/compte.service';
 
 @Injectable()
 export class DepenseService {
@@ -14,54 +16,59 @@ export class DepenseService {
     @InjectRepository(Depense)
     private depenseRepository: Repository<Depense>,
 
-    @InjectRepository(User)
-    private userRepository: Repository<User>
+    @InjectRepository(Compte)
+    private compteRepository: Repository<Compte>,
+
+    @Inject()
+    private compteService: CompteService
   ) {
 
   }
 
   async create(createDepenseDto: CreateDepenseDto) {
 
-    let user = await this.userRepository.findOne({
+    let compte = await this.compteRepository.findOne({
       where: {
-        id: createDepenseDto.userId
+        idCompte: createDepenseDto.userId
       }
     })
 
-    if (!user) {
-      throw new Error("user not found")
+    if (!compte) {
+      throw new Error("compte not found")
     }
 
     let newDepense = await this.depenseRepository.create({
       ...createDepenseDto,
-      user
+      compte
     })
+
+    await this.compteService.degradeSolde(newDepense.compte.idCompte, newDepense.montant)
 
     return await this.depenseRepository.save(newDepense)
 
   }
 
 
-  async getDepenseByUserId(userId: number): Promise<Depense[]> {
+  // async getDepenseByUserId(userId: number): Promise<Depense[]> {
 
 
-    const depenses = await this.depenseRepository.find({
-      where: {
-        user: {
-          id: userId
-        }
-      },
-      relations: ["user"]
-    })
+  //   // const depenses = await this.depenseRepository.find({
+  //   //   where: {
+  //   //     user: {
+  //   //       id: userId
+  //   //     }
+  //   //   },
+  //   //   relations: ["user"]
+  //   // })
 
-    if (!depenses || depenses.length === 0) {
-      throw new Error("no depenses found")
-    }
+  //   // if (!depenses || depenses.length === 0) {
+  //   //   throw new Error("no depenses found")
+  //   // }
 
-    return depenses;
+  //   // return depenses;
 
 
-  }
+  // }
 
   async findOne(id: number): Promise<Depense> {
 
@@ -84,6 +91,16 @@ export class DepenseService {
     return this.findOne(id);
   }
   async remove(id: number): Promise<void> {
+    const depense = await this.depenseRepository.findOne({
+      where: {
+        idDepense: id
+      },
+      relations: ["compte"]
+
+    })
+
+    await this.compteService.upgradeSolde(depense.compte.idCompte, depense.montant)
+
     await this.depenseRepository.delete(id);
   }
 }

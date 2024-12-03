@@ -4,13 +4,15 @@ import { RevenuService } from './revenu.service';
 import { RevenuController } from './revenu.controller';
 import { Revenu } from './entities/revenu.entity';
 import { User } from '../user/entities/user.entity';
+import { Compte } from 'src/compte/entities/compte.entity';
+import { CompteService } from 'src/compte/compte.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Revenu, User]),
+    TypeOrmModule.forFeature([Revenu, Compte]),
   ],
   controllers: [RevenuController],
-  providers: [RevenuService],
+  providers: [RevenuService, CompteService],
   exports: [RevenuService]
 })
-export class RevenuModule {}
+export class RevenuModule { }
