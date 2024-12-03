@@ -24,6 +24,7 @@ export class UsersController {
       password: hashedPassword,
       id: 0,
       comptes: [],
+      comptePartage: []
     };
     try {
       const response = await this.usersService.create(user);

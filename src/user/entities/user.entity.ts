@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import { Revenu } from 'src/revenu/entities/revenu.entity';
 import { Depense } from 'src/depense/entities/depense.entity';
 import { Compte } from 'src/compte/entities/compte.entity';
@@ -25,4 +25,8 @@ export class User {
 
   @OneToMany(() => Compte, compte => compte.user)
   comptes: Compte[];
+
+  @ManyToMany(() => Compte, compte => compte.collab)
+  @JoinTable({ name: "collaboration" })
+  comptePartage: Compte[];
 }

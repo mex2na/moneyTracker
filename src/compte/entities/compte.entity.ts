@@ -1,7 +1,7 @@
 import { Depense } from "src/depense/entities/depense.entity";
 import { Revenu } from "src/revenu/entities/revenu.entity";
 import { User } from "src/user/entities/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Compte {
@@ -16,14 +16,17 @@ export class Compte {
     solde: number;
 
     @OneToMany(() => Revenu, revenu => revenu.compte)
-    revenus: Revenu[]
+    revenus: Revenu[];
 
     @OneToMany(() => Depense, depense => depense.compte)
-    depenses: Depense[]
+    depenses: Depense[];
 
     @ManyToOne(() => User, user => user.comptes)
     @JoinColumn({ name: "userId" })
-    user: User
+    user: User;
+
+    @ManyToMany(() => User, user => user.comptePartage)
+    collab: User[];
 
 
 }
