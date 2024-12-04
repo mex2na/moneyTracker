@@ -18,6 +18,9 @@ export class Depense {
     date: Date;
 
 
+    @ManyToOne(() => User, user => user.depensesPerso)
+    @JoinColumn({ name: "userId" })
+    user: User
 
     @ManyToOne(() => Compte, compte => compte.depenses)
     @JoinColumn({ name: "compteId" })

@@ -6,7 +6,7 @@ import { JwtAuthGuard } from 'src/jwt-auth.guard';
 import { Response } from 'express';
 
 @Controller('depense')
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 export class DepenseController {
   constructor(private readonly depenseService: DepenseService) { }
 

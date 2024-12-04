@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, UseGuards } from '@nestjs/common';
 import { CompteService } from './compte.service';
 import { CreateCompteDto } from './dto/create-compte.dto';
 import { UpdateCompteDto } from './dto/update-compte.dto';
 import { Response } from 'express';
+import { JwtAuthGuard } from 'src/jwt-auth.guard';
 
 @Controller('compte')
+@UseGuards(JwtAuthGuard)
 export class CompteController {
   constructor(private readonly compteService: CompteService) { }
 
@@ -30,6 +32,31 @@ export class CompteController {
 
 
   }
+
+  @Post("/share/:compteId")
+  async shareCompte(@Param("compteId") compteId, @Body("idUser") idUser: number, @Res() res: Response) {
+
+    try {
+
+      const data = await this.compteService.shareCompte(compteId, idUser);
+
+      res.status(200).json({
+        status: true,
+        data
+      })
+
+    } catch (e) {
+
+      res.status(200).json({
+        status: true,
+        data: e
+      })
+    }
+
+  }
+
+
+
 
   @Get("/user/:userId")
   async findByUserId(@Param("userId") userId, @Res() res: Response) {

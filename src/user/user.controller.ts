@@ -8,7 +8,6 @@ import * as bcrypt from 'bcrypt';
 import { JwtAuthGuard } from 'src/jwt-auth.guard';
 
 @Controller('/users')
-@UseGuards(JwtAuthGuard)
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
@@ -24,7 +23,9 @@ export class UsersController {
       password: hashedPassword,
       id: 0,
       comptes: [],
-      comptePartage: []
+      comptePartage: [],
+      revenusPerso: [],
+      depensesPerso: []
     };
     try {
       const response = await this.usersService.create(user);

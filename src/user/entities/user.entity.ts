@@ -17,11 +17,11 @@ export class User {
   @Column()
   password: string;
 
-  // @OneToMany(() => Revenu, (revenu) => revenu.user)
-  // revenus: Revenu[];
+  @OneToMany(() => Revenu, (revenu) => revenu.user)
+  revenusPerso: Revenu[];
 
-  // @OneToMany(() => Depense, (depense) => depense.user)
-  // depenses: Depense[];
+  @OneToMany(() => Depense, (depense) => depense.user)
+  depensesPerso: Depense[];
 
   @OneToMany(() => Compte, compte => compte.user)
   comptes: Compte[];

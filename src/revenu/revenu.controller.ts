@@ -6,7 +6,7 @@ import { UpdateRevenuDto } from './dto/update-revenu.dto';
 import { JwtAuthGuard } from 'src/jwt-auth.guard';
 
 @Controller('revenu')
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 export class RevenuController {
   constructor(private readonly revenuService: RevenuService) { }
 

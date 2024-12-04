@@ -17,6 +17,9 @@ export class Revenu {
   date: string;
 
 
+  @ManyToOne(() => User, user => user.revenusPerso)
+  @JoinColumn({ name: "userId" })
+  user: User
 
   @ManyToOne(() => Compte, compte => compte.revenus)
   @JoinColumn({ name: "compteId" })

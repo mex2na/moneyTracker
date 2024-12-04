@@ -28,6 +28,16 @@ export class CompteService {
 
   }
 
+  async shareCompte(compteId, idUser: number) {
+
+    const compte = await this.findOne(compteId)
+
+    // const addCollab = await this.compteRepository.update(compteId, {})
+
+    return compte.collab
+  }
+
+
   async findByUserId(userId: number): Promise<Compte[]> {
 
     const comptes = await this.compteRepository.find({
@@ -57,7 +67,8 @@ export class CompteService {
     return await this.compteRepository.findOne({
       where: {
         idCompte: id
-      }
+      },
+      relations: ["depenses", "revenus", "user", "collab"]
     });
   }
 
