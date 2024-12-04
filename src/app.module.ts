@@ -29,11 +29,14 @@ import { Compte } from './compte/entities/compte.entity';
 
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
+      host: process.env.PGHOST,
       port: +process.env.DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      username: process.env.PGUSER,
+      password: process.env.PGPASSWORD,
+      database: process.env.PGDATABASE,
+      "ssl": {
+        "rejectUnauthorized": false
+      },
       entities: [User, Revenu, Depense, Compte],
       synchronize: true,
     }),
