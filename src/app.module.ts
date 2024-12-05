@@ -29,11 +29,12 @@ import { Compte } from './compte/entities/compte.entity';
 
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.PGHOST,
-      port: +process.env.DB_PORT,
-      username: process.env.PGUSER,
-      password: process.env.PGPASSWORD,
-      database: process.env.PGDATABASE,
+      url: 'postgresql://postgres.gauzbwaimqnahvhpllpk:root@aws-0-eu-west-3.pooler.supabase.com:6543/postgres',
+      // host: process.env.PGHOST,
+      // port: +process.env.DB_PORT,
+      // username: process.env.PGUSER,
+      // password: process.env.PGPASSWORD,
+      // database: process.env.PGDATABASE,
       "ssl": {
         "rejectUnauthorized": false
       },

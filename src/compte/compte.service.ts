@@ -28,13 +28,18 @@ export class CompteService {
 
   }
 
-  async shareCompte(compteId, idUser: number) {
-
+  async shareCompte(compteId: number, idUser: number) {
     const compte = await this.findOne(compteId)
 
-    // const addCollab = await this.compteRepository.update(compteId, {})
+    if (!compte.collab) {
+      compte.collab = []
+    }
 
-    return compte.collab
+    const addCollab = await this.compteRepository.update(compteId, {
+      collab: [...compte.collab, { id: idUser }]
+    })
+
+    return addCollab
   }
 
 
