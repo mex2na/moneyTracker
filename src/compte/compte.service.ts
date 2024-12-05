@@ -29,19 +29,23 @@ export class CompteService {
   }
 
   async shareCompte(compteId: number, idUser: number) {
-    const compte = await this.findOne(compteId)
 
-    if (!compte.collab) {
-      compte.collab = []
+    try {
+
+      const compte = await this.findOne(compteId)
+
+
+      const addCollab = await this.compteRepository.update(compteId, {
+        collab: [...compte.collab, { id: idUser }]
+      })
+
+      return addCollab
+    } catch (e) {
+
+      throw new Error("Compte non existant")
+
     }
-
-    const addCollab = await this.compteRepository.update(compteId, {
-      collab: [...compte.collab, { id: idUser }]
-    })
-
-    return addCollab
   }
-
 
   async findByUserId(userId: number): Promise<Compte[]> {
 

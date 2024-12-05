@@ -47,8 +47,8 @@ export class CompteController {
 
     } catch (e) {
 
-      res.status(200).json({
-        status: true,
+      res.status(501).json({
+        status: false,
         data: e
       })
     }
